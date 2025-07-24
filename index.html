@@ -926,7 +926,7 @@
         </div>
     </div>
 
-   <script>
+  <script>
     // Modal functionality
     const enrollNowBtns = document.querySelectorAll('#enrollNowBtn, #enrollNowBtn2');
     const enrollmentModal = document.getElementById('enrollmentModal');
@@ -970,21 +970,26 @@
         submitEnrollmentBtn.classList.add('loading');
         
         try {
-            // Send data to backend/EmailJS (silently in background)
-            await emailjs.send('service_o6k0gbe', 'service_o6k0gbe', {
-                student_name: name,
-                student_email: email,
-                program_name: "Sales Training + Internship Program",
-                program_price: "₹999"
+            // Send data to EmailJS
+            await emailjs.send('service_o6k0gbe', 'template_2yyygqh', {
+                name: name,
+                email: email,
+                program: "Sales Training + Internship Program",
+                amount: "₹999",
+                reply_to: email // Important for reply-to header
             });
 
+            console.log('Email sent successfully!');
+            
             // Redirect to Razorpay payment link
             window.location.href = "https://rzp.io/rzp/LdmRRad";
             
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Email sending failed:', error);
             // Still redirect to payment even if email fails
             window.location.href = "https://rzp.io/rzp/LdmRRad";
+        } finally {
+            submitEnrollmentBtn.classList.remove('loading');
         }
     });
 
