@@ -925,80 +925,80 @@
         </div>
     </div>
 
-    <script>
-        // Modal functionality
-        const enrollNowBtns = document.querySelectorAll('#enrollNowBtn, #enrollNowBtn2');
-        const enrollmentModal = document.getElementById('enrollmentModal');
-        const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const enrollmentForm = document.getElementById('enrollmentForm');
-        const submitEnrollmentBtn = document.getElementById('submitEnrollmentBtn');
+   <script>
+    // Modal functionality
+    const enrollNowBtns = document.querySelectorAll('#enrollNowBtn, #enrollNowBtn2');
+    const enrollmentModal = document.getElementById('enrollmentModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const enrollmentForm = document.getElementById('enrollmentForm');
+    const submitEnrollmentBtn = document.getElementById('submitEnrollmentBtn');
 
-        // Open modal
-        enrollNowBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                enrollmentModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        // Close modal
-        function closeModal() {
-            enrollmentModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        modalCloseBtn.addEventListener('click', closeModal);
-
-        // Close when clicking outside modal content
-        enrollmentModal.addEventListener('click', (e) => {
-            if (e.target === enrollmentModal) {
-                closeModal();
-            }
-        });
-
-        // Form submission
-        enrollmentForm.addEventListener('submit', async (e) => {
+    // Open modal
+    enrollNowBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            
-            // Change button to loading state
-            submitEnrollmentBtn.classList.add('loading');
-            
-            try {
-                // Send data to backend/EmailJS (silently in background)
-                await emailjs.send('YOUR_EMAILJS_SERVICE_ID', 'YOUR_ADMIN_TEMPLATE_ID', {
-                    student_name: name,
-                    student_email: email,
-                    program_name: "Sales Training + Internship Program",
-                    program_price: "₹999"
-                });
+            enrollmentModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
 
-                // Immediately redirect to payment regardless of email success
-                window.location.href = "https://payment.link/999";
+    // Close modal
+    function closeModal() {
+        enrollmentModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+
+    // Close when clicking outside modal content
+    enrollmentModal.addEventListener('click', (e) => {
+        if (e.target === enrollmentModal) {
+            closeModal();
+        }
+    });
+
+    // Form submission
+    enrollmentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        
+        // Change button to loading state
+        submitEnrollmentBtn.classList.add('loading');
+        
+        try {
+            // Send data to backend/EmailJS (silently in background)
+            await emailjs.send('YOUR_EMAILJS_SERVICE_ID', 'YOUR_ADMIN_TEMPLATE_ID', {
+                student_name: name,
+                student_email: email,
+                program_name: "Sales Training + Internship Program",
+                program_price: "₹999"
+            });
+
+            // Redirect to Razorpay payment link
+            window.location.href = "https://rzp.io/rzp/LdmRRad";
+            
+        } catch (error) {
+            console.error('Error:', error);
+            // Still redirect to payment even if email fails
+            window.location.href = "https://rzp.io/rzp/LdmRRad";
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            if (this.getAttribute('href') !== '#') {
+                e.preventDefault();
                 
-            } catch (error) {
-                console.error('Error:', error);
-                // Still redirect even if email fails
-                window.location.href = "https://payment.link/999";
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
         });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href') !== '#') {
-                    e.preventDefault();
-                    
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    });
+</script>
 </body>
 </html>
