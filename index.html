@@ -389,6 +389,70 @@
             gap: 8px;
             opacity: 0.9;
         }
+        /* FAQ Section Styles */
+.faq {
+    padding: 60px 0;
+    background-color: white;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 18px 20px;
+    text-align: left;
+    background-color: var(--light);
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #f1f5f9;
+}
+
+.faq-question i {
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background-color: white;
+}
+
+.faq-item.active .faq-answer {
+    padding: 20px;
+    max-height: 300px;
+}
+
+.faq-answer p {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.6;
+}
         
         /* Footer */
         footer {
@@ -896,6 +960,51 @@
         </div>
     </section>
 
+    <!-- Add this section just before the footer -->
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Common questions about our training program</p>
+        </div>
+        
+        <div class="faq-container">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+                <button class="faq-question">
+                    How quickly can I complete the training?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Most students complete our focused training in 2-7 days. The exact time depends on your schedule and pace, but the curriculum is designed to be completed quickly while still providing comprehensive sales knowledge.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+                <button class="faq-question">
+                    Is the internship really guaranteed?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, we guarantee internship placement upon successful completion of the training. We maintain partnerships with multiple companies who are actively seeking our trained interns. If for any rare reason we can't place you within 14 days of completion, we'll refund your ₹999.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+                <button class="faq-question">
+                    What kind of companies will I be interning with?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Our partner companies range from startups to established firms across industries like tech, marketing, real estate, and education. All provide legitimate sales experience. We match you based on your profile, location preferences, and performance in the training.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1043,6 +1152,25 @@
             }
         });
     });
+
+      // FAQ Accordion functionality
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+        // Close all other items
+        faqItems.forEach(otherItem => {
+            if (otherItem !== item && otherItem.classList.contains('active')) {
+                otherItem.classList.remove('active');
+            }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
+    });
+});
 </script>
 </body>
 </html>
