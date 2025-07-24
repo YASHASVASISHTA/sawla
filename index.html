@@ -669,6 +669,31 @@
                 grid-template-columns: repeat(4, 1fr);
             }
         }
+        .logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.byline {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray);
+    margin-top: -2px;
+    letter-spacing: 0.5px;
+}
+
+@media (min-width: 768px) {
+    .logo {
+        font-size: 22px;
+    }
+    .byline {
+        font-size: 13px;
+    }
+}
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -681,14 +706,17 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">SalesAlchemy</div>
-                <button class="mobile-menu-button">☰</button>
-            </nav>
-        </div>
-    </header>
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                SalesAlchemy
+                <div class="byline">by LogicLink Solutions</div>
+            </div>
+            <button class="mobile-menu-button">☰</button>
+        </nav>
+    </div>
+</header>
 
     <!-- Hero Section -->
     <section class="hero">
